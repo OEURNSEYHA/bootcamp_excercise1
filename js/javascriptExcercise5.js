@@ -1,8 +1,8 @@
-// // 1.	Given the array of `colors` [“Red”, “Blue”, “Green”], use array destructuring to extract the first and third elements of the array
+// 1.	Given the array of `colors` [“Red”, “Blue”, “Green”], use array destructuring to extract the first and third elements of the array
 
-// const color = ["Red", "Blue", "Green"];
-// const [red, blue, green] = color;
-// console.log(red, green);
+const color = ["Red", "Blue", "Green"];
+const [red, ,green] = color;
+console.log(red, green);
 
 // // 2.	Given the object of person {name: “Alice”, age: 25, job: “Developer”}, use object destructuring to extract the ‘name’ & ‘age’ properties and console.log it out
 
@@ -66,17 +66,17 @@
 // Example: object = {a:1, b:2, c:3, d:4}
 // filterProps(object, “b”, “d”) // Should Return:  {a:1, c:3}
 
-function filterProps(obj, ...propsToFilter) {
-  const filteredObj = {};
-  for (let key in obj) {
-      if (!propsToFilter.includes(key)) {
-          filteredObj[key] = obj[key];
-      }
-  }
-  return filteredObj;
-}
+// function filterProps(obj, ...propsToFilter) {
+//   const filteredObj = {};
+//   for (let key in obj) {
+//       if (!propsToFilter.includes(key)) {
+//           filteredObj[key] = obj[key];
+//       }
+//   }
+//   return filteredObj;
+// }
 
-const object = {a: 1, b: 2, c: 3, d: 4};
-console.log(filterProps(object, "b", "d")); // Output: {a: 1, c: 3}
+// const object = {a: 1, b: 2, c: 3, d: 4};
+// console.log(filterProps(object, "b", "d")); // Output: {a: 1, c: 3}
 
 

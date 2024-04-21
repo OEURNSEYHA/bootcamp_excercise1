@@ -39,8 +39,8 @@
 
 // 2.
 
-const fs = require("fs");
-const { resolve } = require("path");
+const fs = require("fs").promises;
+
 function handleError(err) {
   if (err) {
     console.error("Error:", err);
@@ -49,38 +49,38 @@ function handleError(err) {
 
 const filePath = "text/example.txt";
 // function read file;
-function readFiles(filePath) {
-  return new Promise((resolve, reject) =>
-    fs.readFile(filePath, "utf-8", (err, data) => {
-      if (err) {
-        reject("Error reading file: " + err.message); // Reject with error message
-      } else {
-        console.log(data);
-        resolve("Read file success");
-      }
-    })
-  );
-}
-// function write file;
-function writeFiles(filePath, content) {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(filePath, content, "utf-8", (err, data) => {
-      if (err) {
-        reject("Error writing file:" + err.message);
-      } else {
-        resolve("write file success");
-      }
-    });
-  });
-}
+// function readFiles(filePath) {
+//   return new Promise((resolve, reject) =>
+//     fs.readFile(filePath, "utf-8", (err, data) => {
+//       if (err) {
+//         reject("Error reading file: " + err.message); // Reject with error message
+//       } else {
+//         console.log(data);
+//         resolve("Read file success");
+//       }
+//     })
+//   );
+// }
+// // function write file;
+// function writeFiles(filePath, content) {
+//   return new Promise((resolve, reject) => {
+//     fs.writeFile(filePath, content, "utf-8", (err, data) => {
+//       if (err) {
+//         reject("Error writing file:" + err.message);
+//       } else {
+//         resolve("write file success");
+//       }
+//     });
+//   });
+// }
 
-writeFiles(filePath, "hello")
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+// writeFiles(filePath, "hello")
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });
 // Provide the actual file path here
 // readFiles(filePath)
 //   .then((result) => {
@@ -101,45 +101,45 @@ writeFiles(filePath, "hello")
 
 // main();
 
-// function readFile(filePath) {
-//   return fs.readFile(filePath, "utf8");
-// }
+function readFile(filePath) {
+  return fs.readFile(filePath, "utf8");
+}
 
-// function writeFile(filePath, data) {
-//   return fs.writeFile(filePath, data, "utf8");
-// }
+function writeFile(filePath, data) {
+  return fs.writeFile(filePath, data, "utf8");
+}
 
-// const pathFileInput = "text/input.txt";
+const pathFileInput = "text/input.txt";
 
-// readFile(pathFileInput)
-//   .then((data) => {
-//     console.log("File contents:", data);
-//     const modifiedContent1 = data + "First modification";
-//     const pathFileOutput1 = "text/output1.txt";
-//     return writeFile(pathFileOutput1, modifiedContent1);
-//   })
-//   .then(() => {
-//     console.log("Successfully wrote to output1.txt");
-//     const pathFileOutput1 = "text/output1.txt";
-//     return readFile(pathFileOutput1);
-//   })
-//   .then((data) => {
-//     console.log("Content of output1.txt:", data);
-//     const modifiedContent2 = data + "Second modification";
-//     const pathFileOutput2 = "text/output2.txt";
-//     return writeFile(pathFileOutput2, modifiedContent2);
-//   })
-//   .then(() => {
-//     console.log("Successfully wrote to output2.txt");
-//     const pathFileOutput2 = "text/output2.txt";
-//     return readFile(pathFileOutput2);
-//   })
-//   .then((data) => {
-//     console.log("Final content of output2.txt:", data);
-//   })
-//   .catch((err) => {
-//     handleError(err);
-//   });
+readFile(pathFileInput)
+  .then((data) => {
+    console.log("File contents:", data);
+    const modifiedContent1 = data + "First modification";
+    const pathFileOutput1 = "text/output1.txt";
+    return writeFile(pathFileOutput1, modifiedContent1);
+  })
+  .then(() => {
+    console.log("Successfully wrote to output1.txt");
+    const pathFileOutput1 = "text/output1.txt";
+    return readFile(pathFileOutput1);
+  })
+  .then((data) => {
+    console.log("Content of output1.txt:", data);
+    const modifiedContent2 = data + "Second modification";
+    const pathFileOutput2 = "text/output2.txt";
+    return writeFile(pathFileOutput2, modifiedContent2);
+  })
+  .then(() => {
+    console.log("Successfully wrote to output2.txt");
+    const pathFileOutput2 = "text/output2.txt";
+    return readFile(pathFileOutput2);
+  })
+  .then((data) => {
+    console.log("Final content of output2.txt:", data);
+  })
+  .catch((err) => {
+    handleError(err);
+  });
 
 // 3.
 
